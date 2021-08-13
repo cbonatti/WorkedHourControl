@@ -1,4 +1,5 @@
-﻿using WorkedHourControl.Domain.Entities.Base;
+﻿using System.Collections.Generic;
+using WorkedHourControl.Domain.Entities.Base;
 
 namespace WorkedHourControl.Domain.Entities
 {
@@ -21,6 +22,7 @@ namespace WorkedHourControl.Domain.Entities
 
         public string Name { get; private set; }
         public Profile Profile { get; private set; }
+        public virtual ICollection<TeamEmployee> Teams { get; private set; }
 
         public Employee ChangeName(string name)
         {

@@ -15,13 +15,14 @@ namespace WorkedHourControl.Domain.Entities
             Name = name;
         }
 
-        public Team(string name, ICollection<Employee> employees) : this(name)
+        public Team(string name, ICollection<TeamEmployee> employees) : this(name)
         {
             Employees = employees;
         }
 
         public string Name { get; private set; }
-        public virtual ICollection<Employee> Employees { get; private set; }
+        public virtual ICollection<TeamEmployee> Employees { get; private set; }
+        public virtual ICollection<ProjectTeam> Projects { get; private set; }
 
         public Team ChangeName(string name)
         {
@@ -32,17 +33,18 @@ namespace WorkedHourControl.Domain.Entities
         public Team AddEmployee(Employee employee)
         {
             if (Employees == null)
-                Employees = new List<Employee>();
+                Employees = new List<TeamEmployee>();
 
             if (!Employees.Any(x => x.Id == employee.Id))
-                Employees.Add(employee);
+                Employees.Add(new TeamEmployee(employee.Id));
 
             return this;
         }
 
         public Team RemoveEmployee(Employee employee)
         {
-            Employees.Remove(employee);
+            var teamEmployee = Employees.FirstOrDefault(x => x.EmployeeId == employee.Id);
+            Employees.Remove(teamEmployee);
             return this;
         }
     }
