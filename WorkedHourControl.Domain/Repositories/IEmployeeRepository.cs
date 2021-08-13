@@ -7,6 +7,6 @@ namespace WorkedHourControl.Domain.Repositories
     public interface IEmployeeRepository
     {
         Task<Employee> Get(long id);
-        Task<IList<Employee>> Get();
+        //Task<IList<Employee>> Get();
     }
 }
