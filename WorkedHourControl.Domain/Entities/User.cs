@@ -15,6 +15,14 @@ namespace WorkedHourControl.Domain.Entities
             Employee = new Employee(name, profile);
         }
 
+        public User(long id, string username, string password, Employee employee)
+        {
+            SetId(id);
+            Username = username;
+            Password = password;
+            EmployeeId = employee.Id;
+        }
+
         public string Username { get; private set; }
         public string Password { get; private set; }
         public long EmployeeId { get; private set; }

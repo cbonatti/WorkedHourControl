@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using WorkedHourControl.Domain.Entities;
 using WorkedHourControl.Infra.Data.Mapping;
 
@@ -8,6 +9,11 @@ namespace WorkedHourControl.Infra.Data
     {
         public WorkedHourContext(DbContextOptions<WorkedHourContext> options) : base(options)
         {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
+        {
+            dbContextOptionsBuilder.UseLazyLoadingProxies();
         }
 
         public DbSet<Employee> Employees { get; set; }
@@ -26,6 +32,20 @@ namespace WorkedHourControl.Infra.Data
             modelBuilder.ApplyConfiguration(new ProjectMap());
             modelBuilder.ApplyConfiguration(new ProjectWorkedHourMap());
             modelBuilder.ApplyConfiguration(new UserMap());
+
+            var employee = new Employee(1, "Gestor", Profile.Manager);
+
+            modelBuilder.Entity<Employee>().HasData(new List<Employee>()
+            {
+                employee
+            });
+
+            modelBuilder.Entity<User>().HasData(new List<User>()
+            {
+                new User(1, "gestor", "123Mudar", employee)
+            });
+
+            
         }
     }
 }

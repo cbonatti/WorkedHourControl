@@ -4,6 +4,6 @@
     {
         public long Id { get; private set; }
 
-        public void SetId(long id) => Id = id;
+        protected void SetId(long id) => Id = id;
     }
 }

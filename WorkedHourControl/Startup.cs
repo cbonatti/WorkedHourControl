@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WorkedHourControl.Application;
 using WorkedHourControl.Infra;
 using WorkedHourControl.Infra.Data;
 
@@ -26,6 +27,7 @@ namespace WorkedHourControl
             services.AddCors();
             services.AddControllers();
             services.RegisterInfra(Configuration);
+            services.RegisterApplication();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

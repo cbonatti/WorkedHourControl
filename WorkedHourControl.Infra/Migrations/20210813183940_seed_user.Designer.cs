@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkedHourControl.Infra.Data;
 
 namespace WorkedHourControl.Infra.Migrations
 {
     [DbContext(typeof(WorkedHourContext))]
-    partial class WorkedHourContextModelSnapshot : ModelSnapshot
+    [Migration("20210813183940_seed_user")]
+    partial class seed_user
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

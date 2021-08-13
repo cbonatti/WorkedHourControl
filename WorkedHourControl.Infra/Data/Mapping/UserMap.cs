@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Collections.Generic;
 using WorkedHourControl.Domain.Entities;
 using WorkedHourControl.Infra.Data.Mapping.Base;
 
