@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.Text;
 using WorkedHourControl.Infra.Authorization;
+using WorkedHourControl.Infra.Data;
 
 namespace WorkedHourControl.Infra
 {
@@ -15,6 +15,9 @@ namespace WorkedHourControl.Infra
         public static IServiceCollection RegisterInfra(this IServiceCollection services, IConfiguration configuration)
         {
             AddSecurity(services, configuration);
+
+            services.AddDbContext<WorkedHourContext>(options =>
+                options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
 
             return services;
         }
