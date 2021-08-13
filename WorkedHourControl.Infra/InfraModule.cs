@@ -5,8 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using WorkedHourControl.Domain.Repositories;
 using WorkedHourControl.Infra.Authorization;
 using WorkedHourControl.Infra.Data;
+using WorkedHourControl.Infra.Data.Repositories;
 
 namespace WorkedHourControl.Infra
 {
@@ -18,6 +20,11 @@ namespace WorkedHourControl.Infra
 
             services.AddDbContext<WorkedHourContext>(options =>
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
