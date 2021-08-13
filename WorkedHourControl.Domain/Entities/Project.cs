@@ -61,7 +61,7 @@ namespace WorkedHourControl.Domain.Entities
             }
             else
             {
-                workedHour.SpentTime = time;
+                workedHour.TimeSpent = time;
             }
 
             return this;

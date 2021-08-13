@@ -18,6 +18,30 @@ namespace WorkedHourControl.Infra.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Employee>().HasKey(x => x.Id);
+            modelBuilder.Entity<Employee>().Property(x => x.Name).IsRequired();
+
+            modelBuilder.Entity<User>().HasKey(x => x.Id);
+            modelBuilder.Entity<User>().Property(x => x.Username).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.Password).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.EmployeeId).IsRequired();
+            modelBuilder.Entity<User>().HasOne(x => x.Employee);
+
+            modelBuilder.Entity<Team>().HasMany(x => x.Employees);
+            modelBuilder.Entity<Team>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<Team>().HasKey(x => x.Id);
+
+            modelBuilder.Entity<Project>().HasMany(x => x.Teams);
+            modelBuilder.Entity<Project>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<Project>().HasKey(x => x.Id);
+
+            modelBuilder.Entity<ProjectWorkedHour>().HasKey(x => x.Id);
+            modelBuilder.Entity<ProjectWorkedHour>().Property(x => x.Date).IsRequired();
+            modelBuilder.Entity<ProjectWorkedHour>().Property(x => x.TimeSpent).IsRequired();
+            modelBuilder.Entity<ProjectWorkedHour>()
+                .HasOne(bc => bc.Project)
+                .WithMany(b => b.WorkedHours)
+                .HasForeignKey(bc => bc.ProjectId);
         }
     }
 }

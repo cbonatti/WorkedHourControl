@@ -5,12 +5,12 @@ namespace WorkedHourControl.Domain.Entities
 {
     public class ProjectWorkedHour : EntityBase
     {
-        public ProjectWorkedHour(long projectId, long employeeId, DateTime date, decimal spentTime)
+        public ProjectWorkedHour(long projectId, long employeeId, DateTime date, decimal timeSpent)
         {
             ProjectId = projectId;
             EmployeeId = employeeId;
             Date = date;
-            SpentTime = spentTime;
+            TimeSpent = timeSpent;
         }
 
         public long ProjectId { get; private set; }
@@ -18,6 +18,6 @@ namespace WorkedHourControl.Domain.Entities
         public long EmployeeId { get; private set; }
         public Employee Employee { get; private set; }
         public DateTime Date { get; set; }
-        public decimal SpentTime { get; set; }
+        public decimal TimeSpent { get; set; }
     }
 }
