@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\WorkedHourControl.Domain\WorkedHourControl.Domain.csproj" />
+    <ProjectReference Include="..\WorkedHourControl.Infra\WorkedHourControl.Infra.csproj" />
   </ItemGroup>
 
 </Project>

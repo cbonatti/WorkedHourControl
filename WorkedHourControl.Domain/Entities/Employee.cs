@@ -29,5 +29,11 @@ namespace WorkedHourControl.Domain.Entities
             Name = name;
             return this;
         }
+
+        public Employee ChangeProfile(Profile profile)
+        {
+            Profile = profile;
+            return this;
+        }
     }
 }

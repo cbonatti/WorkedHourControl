@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WorkedHourControl.Application\WorkedHourControl.Application.csproj" />
     <ProjectReference Include="..\WorkedHourControl.Infra\WorkedHourControl.Infra.csproj" />
   </ItemGroup>
 

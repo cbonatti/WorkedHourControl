@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using WorkedHourControl.Application.Utils;
+using WorkedHourControl.Domain.Entities;
 
 namespace WorkedHourControl.Api.Controllers
 {
@@ -17,7 +14,7 @@ namespace WorkedHourControl.Api.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "gestor")]
+        [AuthorizationRoles(Profile.Manager)]
         public IActionResult Get()
         {
             return Ok("equipes");

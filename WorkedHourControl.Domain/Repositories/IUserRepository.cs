@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using WorkedHourControl.Domain.Entities;
 
 namespace WorkedHourControl.Domain.Repositories
@@ -7,5 +8,9 @@ namespace WorkedHourControl.Domain.Repositories
     {
         Task Save(User user);
         Task<User> Login(string username, string password);
+        Task<User> Get(string username);
+        Task<User> Get(long id);
+        Task<IList<User>> Get();
+        Task Delete(long id);
     }
 }

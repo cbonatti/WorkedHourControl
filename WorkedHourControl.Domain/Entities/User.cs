@@ -19,5 +19,12 @@ namespace WorkedHourControl.Domain.Entities
         public string Password { get; private set; }
         public long EmployeeId { get; private set; }
         public virtual Employee Employee { get; private set; }
+
+        public User ChangePassword(string password)
+        {
+            if (!string.IsNullOrEmpty(password))
+                Password = password;
+            return this;
+        }
     }
 }
