@@ -31,21 +31,17 @@ namespace WorkedHourControl.Domain.Entities
             return this;
         }
 
-        public Project AddEmployee(Team team)
+        public Project AddTeam(long teamId)
         {
-            if (Teams == null)
-                Teams = new List<ProjectTeam>();
-
-            if (!Teams.Any(x => x.Id == team.Id))
-                Teams.Add(new ProjectTeam(team.Id));
+            if (!Teams.Any(x => x.TeamId == teamId))
+                Teams.Add(new ProjectTeam(teamId));
 
             return this;
         }
 
-        public Project RemoveEmployee(Team team)
+        public Project RemoveTeam(ProjectTeam projectTeam)
         {
-            var teamProject = Teams.FirstOrDefault(x => x.TeamId == team.Id);
-            Teams.Remove(teamProject);
+            Teams.Remove(projectTeam);
             return this;
         }
 

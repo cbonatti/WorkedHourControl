@@ -33,7 +33,7 @@ namespace WorkedHourControl.Domain.Entities
 
         public Team AddEmployee(long employeeId)
         {
-            if (!Employees.Any(x => x.Id == employeeId))
+            if (!Employees.Any(x => x.EmployeeId == employeeId))
                 Employees.Add(new TeamEmployee(employeeId));
 
             return this;
