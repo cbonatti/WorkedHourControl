@@ -21,7 +21,7 @@ namespace WorkedHourControl.Application.Services.UserServices
             var user = await _userRepository.Get(request.Username);
             if (user != null)
                 return null;
-            user = new User(request.Username, request.Password, request.Name, (Profile)request.Profile);
+            user = new User(request.Username, request.Password, request.Name, request.Profile);
             await _userRepository.Save(user);
             return user.ToResponse();
         }
@@ -36,7 +36,7 @@ namespace WorkedHourControl.Application.Services.UserServices
                 .ChangePassword(request.Password)
                 .Employee
                     .ChangeName(request.Name)
-                    .ChangeProfile((Profile)request.Profile);
+                    .ChangeProfile(request.Profile);
 
             await _userRepository.Save(user);
             return user.ToResponse();

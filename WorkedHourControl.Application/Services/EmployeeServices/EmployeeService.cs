@@ -19,7 +19,7 @@ namespace WorkedHourControl.Application.Services.EmployeeServices
         public async Task<IList<EmployeeResponse>> Get()
         {
             var employees = await _employeeRepository.Get();
-            return employees.Select(x => x.ToResponse()).ToList();
+            return employees.Select(x => x.ToResponse()).OrderBy(x => x.Name).ThenByDescending(x => x.Profile).ToList();
         }
     }
 }

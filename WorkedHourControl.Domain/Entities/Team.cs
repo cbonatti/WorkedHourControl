@@ -26,25 +26,22 @@ namespace WorkedHourControl.Domain.Entities
 
         public Team ChangeName(string name)
         {
-            Name = name;
+            if (!string.IsNullOrEmpty(name))
+                Name = name;
             return this;
         }
 
-        public Team AddEmployee(Employee employee)
+        public Team AddEmployee(long employeeId)
         {
-            if (Employees == null)
-                Employees = new List<TeamEmployee>();
-
-            if (!Employees.Any(x => x.Id == employee.Id))
-                Employees.Add(new TeamEmployee(employee.Id));
+            if (!Employees.Any(x => x.Id == employeeId))
+                Employees.Add(new TeamEmployee(employeeId));
 
             return this;
         }
 
-        public Team RemoveEmployee(Employee employee)
+        public Team RemoveEmployee(TeamEmployee employee)
         {
-            var teamEmployee = Employees.FirstOrDefault(x => x.EmployeeId == employee.Id);
-            Employees.Remove(teamEmployee);
+            Employees.Remove(employee);
             return this;
         }
     }
