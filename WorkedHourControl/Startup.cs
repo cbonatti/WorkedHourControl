@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WorkedHourControl.Application;
+using WorkedHourControl.Application.Utils.ErrorHandling;
 using WorkedHourControl.Infra;
 using WorkedHourControl.Infra.Data;
 
@@ -25,9 +26,10 @@ namespace WorkedHourControl
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
             services.RegisterInfra(Configuration);
             services.RegisterApplication();
+            services.AddSwaggerGen();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -67,10 +69,15 @@ namespace WorkedHourControl
             app.ConfigureInfra();
             workedHourContext.Database.MigrateAsync().Wait();
 
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "Gerenciamento de Horas Trabalhadas"));
+
 
             app.UseSpa(spa =>
             {
