@@ -18,13 +18,6 @@ namespace WorkedHourControl.Api.Controllers
             _teamService = teamService;
         }
 
-        [HttpDelete]
-        public IActionResult Del()
-        {
-            throw new System.NullReferenceException("xD");
-            return Ok("xD");
-        }
-
         [HttpGet]
         [AuthorizationRoles(Profile.Manager, Profile.Employee)]
         public async Task<IActionResult> Get()
