@@ -35,6 +35,9 @@ namespace WorkedHourControl.Application.Utils.ErrorHandling
                     case NullReferenceException e:
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
+                    case ArgumentNullException e:
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        break;
                     case KeyNotFoundException e:
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;

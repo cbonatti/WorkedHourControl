@@ -1,0 +1,33 @@
+<div class="modal-header">
+	<h4 class="modal-title">Colaborador</h4>
+	<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<div *ngIf="!loading">
+		<div class="form-group">
+			<label for="usuario">Usuário</label>
+			<input type="text" class="form-control" id="usuario" placeholder="Usuário" [(ngModel)]="usuario">
+		</div>
+		<div class="form-group" *ngIf="!id">
+			<label for="senha">Senha</label>
+			<input type="password" class="form-control" id="senha" placeholder="Senha" [(ngModel)]="senha">
+		</div>
+		<div class="form-group">
+			<label for="nome">Nome</label>
+			<input type="text" class="form-control" id="nome" placeholder="Nome" [(ngModel)]="nome">
+		</div>
+		<input type="radio" name="gestor" id="gestor" class="with-gap" [(ngModel)]="perfilId" [value]="1"
+			style="margin-right: 5px;">
+		<label for="gestor" style="margin-right: 15px;">Gestor</label>
+		<input type="radio" name="colaborador" id="colaborador" class="with-gap" [(ngModel)]="perfilId" [value]="2"
+			style="margin-right: 5px;">
+		<label for="colaborador">Colaborador</label>
+	</div>
+	<app-loading *ngIf="loading"></app-loading>
+</div>
+<div class="modal-footer">
+	<button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+	<button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fechar</button>
+</div>

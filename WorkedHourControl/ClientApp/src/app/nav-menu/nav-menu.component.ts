@@ -12,6 +12,9 @@ export class NavMenuComponent implements OnInit {
   isLoggedIn = false;
   isManager = false;
 
+  name = '';
+  profile = '';
+
   constructor(private service: AuthService, private router: Router) {
     this.service.isLoggedIn.subscribe(value => {
       this.loadUser();
@@ -29,6 +32,8 @@ export class NavMenuComponent implements OnInit {
     } else {
       this.isLoggedIn = true;
       this.isManager = usuarioContexto.profile == "Gestor";
+      this.name = usuarioContexto.name;
+      this.profile = usuarioContexto.profile;
     }
   }
 

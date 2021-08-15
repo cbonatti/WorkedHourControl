@@ -18,6 +18,16 @@ namespace WorkedHourControl.Api.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        [AuthorizationRoles(Profile.Manager)]
+        public async Task<IActionResult> Get([FromQuery]long id)
+        {
+            var response = await _userService.Get(id);
+            if (response == null)
+                return NotFound($"Usuário não existe");
+            return Ok(response);
+        }
+
         [HttpPost]
         [AuthorizationRoles(Profile.Manager)]
         public async Task<IActionResult> Post(AddUserRequest request)
@@ -34,7 +44,7 @@ namespace WorkedHourControl.Api.Controllers
         [AuthorizationRoles(Profile.Manager)]
         public async Task<IActionResult> Put(UpdateUserRequest request)
         {
-            if (request == null || request.Id == 0 || string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password) || string.IsNullOrEmpty(request.Name))
+            if (request == null || request.Id == 0 || string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Name))
                 return BadRequest("Informe todos os campos obrigatórios");
             var response = await _userService.Update(request);
             if (response == null)

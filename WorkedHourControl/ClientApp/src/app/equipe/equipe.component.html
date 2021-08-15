@@ -1,3 +1,22 @@
-<div class="col-md-12">
-	equipe
+<h1>Equipes</h1>
+<div *ngIf="!loading">
+	<button type="submit" class="btn btn-primary" (click)="incluir()">Incluir</button>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Nome</th>
+				<th scope="col">Integrantes</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of teams">
+				<th scope="row">{{item.name}}</th>
+				<th scope="row">{{item.employees.length}}</th>
+				<td><button type="submit" class="btn btn-warning" (click)="alterar(item.id)">Editar</button></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
+<app-loading *ngIf="loading" descricao="carregando equipes"></app-loading>

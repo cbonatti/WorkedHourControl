@@ -12,7 +12,7 @@ namespace WorkedHourControl.Application.Utils
             return new TeamResponse()
             {
                 Id = projectTeam.TeamId,
-                Name = projectTeam.Team.Name
+                Name = projectTeam.Team?.Name
             };
         }
     }

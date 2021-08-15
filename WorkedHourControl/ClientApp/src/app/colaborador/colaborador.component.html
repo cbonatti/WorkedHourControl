@@ -1,3 +1,22 @@
-<div class="col-md-12">
-	colaborador
+<h1>Colaboradores</h1>
+<div *ngIf="!loading">
+	<button type="submit" class="btn btn-primary" (click)="incluir()">Incluir</button>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Nome</th>
+				<th scope="col">Perfil</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of employees">
+				<th scope="row">{{item.name}}</th>
+				<td>{{item.profile}}</td>
+				<td><button type="submit" class="btn btn-warning" (click)="alterar(item.id)">Editar</button></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
+<app-loading *ngIf="loading" descricao="carregando colaboradores"></app-loading>

@@ -1,3 +1,4 @@
+import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { LocalStorageService } from "./local-storage.service";
@@ -11,6 +12,18 @@ export class AuthService {
     public isLoggedIn = new BehaviorSubject<boolean>(false);
 
     constructor(private localStorageService: LocalStorageService) {
+    }
+
+    getHeader() {
+        const token = this.getUsuarioContexto().token;
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
+            })
+        };
+
+        return httpOptions;
     }
 
     getUsuarioContexto() {

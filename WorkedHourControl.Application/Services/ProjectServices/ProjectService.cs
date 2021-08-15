@@ -24,6 +24,12 @@ namespace WorkedHourControl.Application.Services.ProjectServices
             return projects.Select(x => x.ToResponse()).OrderBy(x => x.Name).ToList();
         }
 
+        public async Task<ProjectResponse> Get(long id)
+        {
+            var project = await _projectRepository.Get(id);
+            return project.ToResponse();
+        }
+
         public async Task<ProjectResponse> Add(AddProjectRequest request)
         {
             var teams = request.Teams.Select(x => new ProjectTeam(x)).ToList();

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { ErroHandler } from '../error-handle.service';
 import { UserModel } from '../models/user.model';
+import { RestService } from '../rest.service';
 
 @Component({
 	selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 	senha = '';
 	loading = false;
 
-	constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private service: AuthService, private router: Router) {
+	constructor(private restService: RestService, private service: AuthService, private router: Router) {
 	}
 
 	ngOnInit() {
@@ -24,13 +25,18 @@ export class LoginComponent implements OnInit {
 	}
 
 	login() {
+		this.loading = true;
 		let req = new LoginRequest();
 		req.username = this.usuario;
 		req.password = this.senha;
-		this.http.post<UserModel[]>(this.baseUrl + 'api/login', req).subscribe(result => {
+		this.restService.post<UserModel[]>('login', req, false).subscribe(result => {
 			this.service.setUsuarioContexto(result);
+			this.loading = false;
 			this.navigateToHome();
-		}, error => alert(error.error));
+		}, error => {
+			this.loading = false;
+			ErroHandler.handle(error);
+		});
 	}
 
 	navigateToHome() {

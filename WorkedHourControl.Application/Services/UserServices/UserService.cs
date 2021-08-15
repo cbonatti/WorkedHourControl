@@ -16,6 +16,14 @@ namespace WorkedHourControl.Application.Services.UserServices
             _userRepository = userRepository;
         }
 
+        public async Task<UserResponse> Get(long id)
+        {
+            var user = await _userRepository.Get(id);
+            if (user == null)
+                return null;
+            return user.ToResponse();
+        }
+
         public async Task<UserResponse> Add(AddUserRequest request)
         {
             var user = await _userRepository.Get(request.Username);

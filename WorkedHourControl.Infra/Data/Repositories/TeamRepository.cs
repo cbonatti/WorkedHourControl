@@ -22,9 +22,10 @@ namespace WorkedHourControl.Infra.Data.Repositories
         public async Task Save(Team team)
         {
             if (team.Id == 0)
-                await _context.Teams.AddAsync(team);
+                _context.Teams.Add(team);
             else
                 _context.Teams.Update(team);
+            await _context.SaveChangesAsync();
         }
     }
 }

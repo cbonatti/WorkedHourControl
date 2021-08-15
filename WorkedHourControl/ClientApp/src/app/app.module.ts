@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -7,8 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoadingComponent } from './loading/loading.component';
 import { AuthService } from './auth.service';
 import { AuthGuardService, AuthGuardServiceGestor } from './auth-guard.service';
@@ -17,36 +15,42 @@ import { ColaboradorComponent } from './colaborador/colaborador.component';
 import { EquipeComponent } from './equipe/equipe.component';
 import { ProjetoComponent } from './projeto/projeto.component';
 import { LocalStorageService } from './local-storage.service';
+import { GerenciarColaboradorComponent } from './colaborador/gerenciar-colaborador.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RestService } from './rest.service';
+import { GerenciarEquipeComponent } from './equipe/gerenciar-equipe.component';
+import { GerenciarProjetoComponent } from './projeto/gerenciar-projeto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     LoadingComponent,
     LoginComponent,
     ColaboradorComponent,
     EquipeComponent,
-    ProjetoComponent
+    ProjetoComponent,
+    GerenciarColaboradorComponent,
+    GerenciarEquipeComponent,
+    GerenciarProjetoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    NgbModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginComponent },
       { path: 'projetos', component: ProjetoComponent, canActivate: [AuthGuardService] },
       { path: 'equipes', component: EquipeComponent, canActivate: [AuthGuardServiceGestor] },
       { path: 'colaboradores', component: ColaboradorComponent, canActivate: [AuthGuardServiceGestor] },
     ])
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AuthService, AuthGuardService, AuthGuardServiceGestor, LocalStorageService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  providers: [AuthService, AuthGuardService, AuthGuardServiceGestor, LocalStorageService, RestService],
+  entryComponents: [GerenciarColaboradorComponent, GerenciarEquipeComponent, GerenciarProjetoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

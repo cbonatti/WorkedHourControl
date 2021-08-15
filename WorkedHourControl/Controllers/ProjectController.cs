@@ -18,11 +18,19 @@ namespace WorkedHourControl.Api.Controllers
             _projectService = projectService;
         }
 
-        [HttpGet]
+        [HttpGet, Route("list")]
         [AuthorizationRoles(Profile.Manager, Profile.Employee)]
         public async Task<IActionResult> Get()
         {
             var response = await _projectService.Get();
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [AuthorizationRoles(Profile.Manager)]
+        public async Task<IActionResult> GetById([FromQuery]long id)
+        {
+            var response = await _projectService.Get(id);
             return Ok(response);
         }
 
