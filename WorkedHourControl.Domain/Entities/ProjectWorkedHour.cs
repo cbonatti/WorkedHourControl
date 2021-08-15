@@ -15,6 +15,8 @@ namespace WorkedHourControl.Domain.Entities
 
         public long ProjectId { get; private set; }
         public virtual Project Project { get; private set; }
+        public long TeamId { get; private set; }
+        public virtual Team Team { get; private set; }
         public long EmployeeId { get; private set; }
         public virtual Employee Employee { get; private set; }
         public DateTime Date { get; set; }

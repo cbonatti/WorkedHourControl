@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WorkedHourControl.Domain.Entities;
 using WorkedHourControl.Infra.Data.Mapping.Base;
 
@@ -9,6 +10,8 @@ namespace WorkedHourControl.Infra.Data.Mapping
         public override void Configure(EntityTypeBuilder<ProjectWorkedHour> builder)
         {
             base.Configure(builder);
+            builder.ToTable("ProjectWorkedHour");
+            builder.Property(x => x.TeamId).IsRequired();
             builder.Property(x => x.Date).IsRequired();
             builder.Property(x => x.TimeSpent).IsRequired();
             builder
