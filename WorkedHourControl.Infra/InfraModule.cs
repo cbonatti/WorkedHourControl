@@ -25,6 +25,7 @@ namespace WorkedHourControl.Infra
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IWorkedHourRepository, WorkedHourRepository>();
 
             return services;
         }

@@ -45,7 +45,7 @@ namespace WorkedHourControl.Domain.Entities
             return this;
         }
 
-        public Project AddWorkHour(long employeeId, DateTime date, decimal time)
+        public Project AddWorkHour(long employeeId, long teamId, DateTime date, decimal time)
         {
             if (WorkedHours == null)
                 WorkedHours = new List<ProjectWorkedHour>();
@@ -53,7 +53,7 @@ namespace WorkedHourControl.Domain.Entities
             var workedHour = WorkedHours.Where(x => x.EmployeeId == employeeId && x.Date == date).FirstOrDefault();
             if (workedHour == null)
             {
-                workedHour = new ProjectWorkedHour(Id, employeeId, date, time);
+                workedHour = new ProjectWorkedHour(Id, employeeId, teamId, date, time);
                 WorkedHours.Add(workedHour);
             }
             else
