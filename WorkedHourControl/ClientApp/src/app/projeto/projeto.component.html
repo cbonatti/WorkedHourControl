@@ -1,3 +1,8 @@
+<style>
+	.btn-success {
+		margin-left: 5px;
+	}
+</style>
 <h1>Projetos</h1>
 <div *ngIf="!loading">
 	<button type="submit" class="btn btn-primary" (click)="incluir()">Incluir</button>
@@ -14,7 +19,10 @@
 			<tr *ngFor="let item of projects">
 				<th scope="row">{{item.name}}</th>
 				<th scope="row">{{item.teams.length}}</th>
-				<td><button type="submit" class="btn btn-warning" (click)="alterar(item.id)">Editar</button></td>
+				<td>
+					<button type="submit" class="btn btn-warning" (click)="alterar(item.id)">Editar</button>
+					<button type="submit" class="btn btn-success" (click)="alterar(item.id)">Lançar Horas</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>

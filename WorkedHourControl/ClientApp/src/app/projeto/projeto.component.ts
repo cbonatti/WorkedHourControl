@@ -43,4 +43,9 @@ export class ProjetoComponent implements OnInit {
 			this.get();
 		});
 	}
+
+	lancaarHoras(id) {
+		const modalRef = this.modalService.open(GerenciarProjetoComponent, { size: 'xl' });
+		modalRef.componentInstance.id = id;
+	}
 }

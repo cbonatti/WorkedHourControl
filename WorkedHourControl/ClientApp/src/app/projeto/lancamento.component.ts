@@ -6,10 +6,10 @@ import { ProjectModel } from '../models/project.model';
 import { RestService } from '../rest.service';
 
 @Component({
-	selector: 'app-gerenciar-projeto',
-	templateUrl: './gerenciar-projeto.component.html'
+	selector: 'app-lancamento',
+	templateUrl: './lancamento.component.html'
 })
-export class GerenciarProjetoComponent implements OnInit {
+export class LancamentoComponent implements OnInit {
 	projeto: any;
 	loading = false;
 	equipes: ItemSelectedModel[];

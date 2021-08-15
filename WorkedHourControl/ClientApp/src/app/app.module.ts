@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from './rest.service';
 import { GerenciarEquipeComponent } from './equipe/gerenciar-equipe.component';
 import { GerenciarProjetoComponent } from './projeto/gerenciar-projeto.component';
+import { LancamentoComponent } from './projeto/lancamento.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { GerenciarProjetoComponent } from './projeto/gerenciar-projeto.component
     ProjetoComponent,
     GerenciarColaboradorComponent,
     GerenciarEquipeComponent,
-    GerenciarProjetoComponent
+    GerenciarProjetoComponent,
+    LancamentoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -50,7 +52,7 @@ import { GerenciarProjetoComponent } from './projeto/gerenciar-projeto.component
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [AuthService, AuthGuardService, AuthGuardServiceGestor, LocalStorageService, RestService],
-  entryComponents: [GerenciarColaboradorComponent, GerenciarEquipeComponent, GerenciarProjetoComponent],
+  entryComponents: [GerenciarColaboradorComponent, GerenciarEquipeComponent, GerenciarProjetoComponent, LancamentoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,6 +21,8 @@ namespace WorkedHourControl.Infra.Data
         public DbSet<Team> Teams { get; set; }
         public DbSet<Project> Projects { get; set; }
 
+        public DbSet<ProjectWorkedHour> WorkedHour { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
