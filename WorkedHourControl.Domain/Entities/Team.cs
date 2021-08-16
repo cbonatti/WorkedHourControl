@@ -15,6 +15,11 @@ namespace WorkedHourControl.Domain.Entities
             Name = name;
         }
 
+        public Team(long id, string name) : this(name)
+        {
+            SetId(id);
+        }
+
         public Team(string name, ICollection<TeamEmployee> employees) : this(name)
         {
             Employees = employees;

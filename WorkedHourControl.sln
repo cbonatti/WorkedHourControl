@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkedHourControl.Api", "WorkedHourControl\WorkedHourControl.Api.csproj", "{571096DB-C923-4675-B472-A31D321029AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkedHourControl.Infra", "WorkedHourControl.Infra\WorkedHourControl.Infra.csproj", "{D069DC31-8B23-4008-8A52-A2C63F2D436A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkedHourControl.Infra", "WorkedHourControl.Infra\WorkedHourControl.Infra.csproj", "{D069DC31-8B23-4008-8A52-A2C63F2D436A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkedHourControl.Application", "WorkedHourControl.Application\WorkedHourControl.Application.csproj", "{045E7251-29F9-4A36-9AA9-DB5286866E04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkedHourControl.Application", "WorkedHourControl.Application\WorkedHourControl.Application.csproj", "{045E7251-29F9-4A36-9AA9-DB5286866E04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkedHourControl.Domain", "WorkedHourControl.Domain\WorkedHourControl.Domain.csproj", "{368B4D98-6626-4AC3-A371-E603028CA714}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkedHourControl.Domain", "WorkedHourControl.Domain\WorkedHourControl.Domain.csproj", "{368B4D98-6626-4AC3-A371-E603028CA714}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkedHourControl.Application.Tests", "WorkedHourControl.Application.Tests\WorkedHourControl.Application.Tests.csproj", "{8E3F9B03-70B9-47A2-A0CA-FF1AB1491172}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{368B4D98-6626-4AC3-A371-E603028CA714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{368B4D98-6626-4AC3-A371-E603028CA714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{368B4D98-6626-4AC3-A371-E603028CA714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E3F9B03-70B9-47A2-A0CA-FF1AB1491172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E3F9B03-70B9-47A2-A0CA-FF1AB1491172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E3F9B03-70B9-47A2-A0CA-FF1AB1491172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E3F9B03-70B9-47A2-A0CA-FF1AB1491172}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
