@@ -23,7 +23,7 @@ namespace WorkedHourControl.Application.Utils.Extensions
                 TimeSpent = x.TimeSpent,
                 //Employee = x.Employee.ToResponse(),
                 Team = x.Team.ToSimpleResponse()
-            }).ToList();
+            }).OrderBy(x=>x.Date).ToList();
             return response;
         }
     }
