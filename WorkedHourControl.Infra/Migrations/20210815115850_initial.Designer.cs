@@ -9,8 +9,8 @@ using WorkedHourControl.Infra.Data;
 namespace WorkedHourControl.Infra.Migrations
 {
     [DbContext(typeof(WorkedHourContext))]
-    [Migration("20210815032244_add_team_to_worked_hour")]
-    partial class add_team_to_worked_hour
+    [Migration("20210815115850_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ErroHandler } from '../error-handle.service';
+import { LoginModel } from '../models/login.model';
 import { UserModel } from '../models/user.model';
 import { RestService } from '../rest.service';
 
@@ -10,12 +11,11 @@ import { RestService } from '../rest.service';
 	templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-
-	usuario = '';
-	senha = '';
+	login: LoginModel;
 	loading = false;
 
 	constructor(private restService: RestService, private service: AuthService, private router: Router) {
+		this.login = new LoginModel();
 	}
 
 	ngOnInit() {
@@ -24,12 +24,9 @@ export class LoginComponent implements OnInit {
 			this.navigateToHome();
 	}
 
-	login() {
+	enter() {
 		this.loading = true;
-		let req = new LoginRequest();
-		req.username = this.usuario;
-		req.password = this.senha;
-		this.restService.post<UserModel[]>('login', req, false).subscribe(result => {
+		this.restService.post<UserModel[]>('login', this.login, false).subscribe(result => {
 			this.service.setUsuarioContexto(result);
 			this.loading = false;
 			this.navigateToHome();
@@ -42,9 +39,4 @@ export class LoginComponent implements OnInit {
 	navigateToHome() {
 		this.router.navigate(['/']);
 	}
-}
-
-export class LoginRequest {
-	username: string;
-	password: string;
 }

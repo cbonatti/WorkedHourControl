@@ -10,7 +10,6 @@ namespace WorkedHourControl.Domain.Repositories
         Task<User> Login(string username, string password);
         Task<User> Get(string username);
         Task<User> Get(long id);
-        Task<IList<User>> Get();
         Task Delete(long id);
     }
 }

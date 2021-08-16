@@ -69,34 +69,6 @@ namespace WorkedHourControl.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectWorkedHour",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ProjectId = table.Column<long>(nullable: false),
-                    EmployeeId = table.Column<long>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    TimeSpent = table.Column<decimal>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectWorkedHour", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProjectWorkedHour_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProjectWorkedHour_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ProjectTeam",
                 columns: table => new
                 {
@@ -116,6 +88,41 @@ namespace WorkedHourControl.Infra.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProjectTeam_Teams_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Teams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjectWorkedHour",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProjectId = table.Column<long>(nullable: false),
+                    TeamId = table.Column<long>(nullable: false),
+                    EmployeeId = table.Column<long>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    TimeSpent = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectWorkedHour", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectWorkedHour_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjectWorkedHour_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjectWorkedHour_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "Id",
@@ -148,6 +155,16 @@ namespace WorkedHourControl.Infra.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "Id", "Name", "Profile" },
+                values: new object[] { 1L, "Gestor", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "EmployeeId", "Password", "Username" },
+                values: new object[] { 1L, 1L, "123Mudar", "gestor" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectTeam_ProjectId",
                 table: "ProjectTeam",
@@ -167,6 +184,11 @@ namespace WorkedHourControl.Infra.Migrations
                 name: "IX_ProjectWorkedHour_ProjectId",
                 table: "ProjectWorkedHour",
                 column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectWorkedHour_TeamId",
+                table: "ProjectWorkedHour",
+                column: "TeamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamEmployee_EmployeeId",

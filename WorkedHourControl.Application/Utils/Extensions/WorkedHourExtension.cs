@@ -16,14 +16,12 @@ namespace WorkedHourControl.Application.Utils.Extensions
 
             if (workedHour.Count == 0)
                 return response;
-            response.Id = workedHour[0].ProjectId;
-            response.Name = workedHour[0].Project.Name;
             response.WorkedHours = workedHour.Select(x => new WorkedHourDetailResponse()
             {
                 Id = x.Id,
                 Date = x.Date,
                 TimeSpent = x.TimeSpent,
-                Employee = x.Employee.ToResponse(),
+                //Employee = x.Employee.ToResponse(),
                 Team = x.Team.ToSimpleResponse()
             }).ToList();
             return response;

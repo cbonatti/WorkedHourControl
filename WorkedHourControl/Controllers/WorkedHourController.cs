@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WorkedHourControl.Application.DTOs.Requests.ProjectRequests;
 using WorkedHourControl.Application.Services.ProjectServices;
@@ -19,11 +16,27 @@ namespace WorkedHourControl.Api.Controllers
             _workedHourService = workedHourService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post()
+        [HttpGet, Route("project/{projectId}/employee/{employeeId}")]
+        public async Task<IActionResult> Get(long projectId, long employeeId)
         {
-            await _workedHourService.Add(new AddWorkedHourRequest() { TeamId = 1, ProjectId = 1, Date = DateTime.Now, TimeSpent = 10 }, 1);
-            return Ok("baaaata");
+            var response = await _workedHourService.Get(projectId, employeeId);
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(AddWorkedHourRequest request)
+        {
+            if (request == null || request.TimeSpent <= 0 || request.TeamId == 0 || request.ProjectId == 0 || request.EmployeeId == 0)
+                return BadRequest("Informe todos os campos obrigatórios");
+            await _workedHourService.Save(request);
+            return Ok();
+        }
+
+        [HttpDelete, Route("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            await _workedHourService.Delete(id);
+            return Ok();
         }
     }
 }

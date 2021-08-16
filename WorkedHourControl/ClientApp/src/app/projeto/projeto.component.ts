@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ErroHandler } from '../error-handle.service';
 import { RestService } from '../rest.service';
 import { GerenciarProjetoComponent } from './gerenciar-projeto.component';
+import { LancamentosComponent } from './lancamentos.component';
 
 @Component({
 	selector: 'app-projeto',
@@ -44,8 +45,9 @@ export class ProjetoComponent implements OnInit {
 		});
 	}
 
-	lancaarHoras(id) {
-		const modalRef = this.modalService.open(GerenciarProjetoComponent, { size: 'xl' });
-		modalRef.componentInstance.id = id;
+	lancarHoras(item) {
+		const modalRef = this.modalService.open(LancamentosComponent, { size: 'lg' });
+		modalRef.componentInstance.id = item.id;
+		modalRef.componentInstance.name = item.name;
 	}
 }

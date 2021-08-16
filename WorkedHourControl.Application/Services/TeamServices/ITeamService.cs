@@ -7,7 +7,7 @@ namespace WorkedHourControl.Application.Services.TeamServices
 {
     public interface ITeamService
     {
-        Task<IList<TeamResponse>> Get();
+        Task<IList<TeamSimpleResponse>> Get();
         Task<TeamResponse> Get(long id);
         Task<TeamResponse> Add(AddTeamRequest request);
         Task<TeamResponse> Update(UpdateTeamRequest request);

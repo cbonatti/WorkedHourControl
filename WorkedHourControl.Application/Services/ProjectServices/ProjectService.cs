@@ -18,10 +18,10 @@ namespace WorkedHourControl.Application.Services.ProjectServices
             _projectRepository = projectRepository;
         }
 
-        public async Task<IList<ProjectResponse>> Get()
+        public async Task<IList<ProjectSimpleResponse>> Get()
         {
             var projects = await _projectRepository.Get();
-            return projects.Select(x => x.ToResponse()).OrderBy(x => x.Name).ToList();
+            return projects.Select(x => x.ToSimpleResponse()).OrderBy(x => x.Name).ToList();
         }
 
         public async Task<ProjectResponse> Get(long id)

@@ -1,7 +1,8 @@
+import { ProfileModel } from "./profile.model";
+
 export class EmployeeModel {
     username: string;
-    password: string;
     name: string;
-    profile: number;
+    profile: ProfileModel;
     id: number;
 }

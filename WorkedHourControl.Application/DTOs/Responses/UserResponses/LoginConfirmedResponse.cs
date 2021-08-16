@@ -1,10 +1,11 @@
-﻿namespace WorkedHourControl.Application.DTOs.Responses
+﻿using WorkedHourControl.Application.DTOs.Responses.EmployeeResponses;
+
+namespace WorkedHourControl.Application.DTOs.Responses
 {
     public class LoginConfirmedResponse
     {
         public string Username { get; set; }
-        public string Name { get; set; }
-        public string Profile { get; set; }
+        public EmployeeResponse Employee { get; set; }
         public string Token { get; set; }
     }
 }

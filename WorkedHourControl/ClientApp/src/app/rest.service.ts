@@ -28,4 +28,11 @@ export class RestService {
             header = this.service.getHeader();
         return this.http.put<T>(this.baseUrl + 'api/' + url, payload, header)
     }
+
+    delete(url: string, sendReader = true) {
+        let header;
+        if (sendReader)
+            header = this.service.getHeader();
+        return this.http.delete(this.baseUrl + 'api/' + url, header)
+    }
 }

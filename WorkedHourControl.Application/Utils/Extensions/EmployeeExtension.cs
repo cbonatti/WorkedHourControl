@@ -1,4 +1,5 @@
 ﻿using WorkedHourControl.Application.DTOs.Responses.EmployeeResponses;
+using WorkedHourControl.Application.Utils.Extensions;
 using WorkedHourControl.Domain.Entities;
 
 namespace WorkedHourControl.Application.Utils
@@ -13,7 +14,7 @@ namespace WorkedHourControl.Application.Utils
             {
                 Id = employee.Id,
                 Name = employee.Name,
-                Profile = employee.Profile.Description()
+                Profile = employee.Profile.ToReponse()
             };
         }
     }

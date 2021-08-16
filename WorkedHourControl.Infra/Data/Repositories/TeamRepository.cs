@@ -15,7 +15,7 @@ namespace WorkedHourControl.Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<Team> Get(long id) => await _context.Teams.SingleOrDefaultAsync(x => x.Id == id);
+        public async Task<Team> Get(long id) => await _context.Teams.Include(x => x.Employees).ThenInclude(x => x.Employee).SingleOrDefaultAsync(x => x.Id == id);
 
         public async Task<IList<Team>> Get() => await _context.Teams.ToListAsync();
 

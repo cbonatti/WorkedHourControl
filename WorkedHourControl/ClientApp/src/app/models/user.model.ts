@@ -1,13 +1,12 @@
 import { Observable, Subject } from "rxjs";
+import { EmployeeModel } from "./employee.model";
 
 export class UserModel {
     username: string;
-    name: string;
-    profile: string;
+    employee: EmployeeModel;
     token: string;
 
     private logger = new Subject<boolean>();
-    private loggedIn = false;
 
     isLoggedIn(): Observable<boolean> {
         return this.logger.asObservable();

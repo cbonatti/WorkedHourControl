@@ -17,5 +17,16 @@ namespace WorkedHourControl.Application.Utils
                 Teams = project.Teams.Select(x => x.ToTeamResponse()).ToList()
             };
         }
+
+        public static ProjectSimpleResponse ToSimpleResponse(this Project project)
+        {
+            if (project == null)
+                return null;
+            return new ProjectSimpleResponse()
+            {
+                Id = project.Id,
+                Name = project.Name
+            };
+        }
     }
 }

@@ -31,9 +31,9 @@ export class NavMenuComponent implements OnInit {
       this.isLoggedIn = false;
     } else {
       this.isLoggedIn = true;
-      this.isManager = usuarioContexto.profile == "Gestor";
-      this.name = usuarioContexto.name;
-      this.profile = usuarioContexto.profile;
+      this.isManager = usuarioContexto.employee.profile.id == 1;
+      this.name = usuarioContexto.employee.name;
+      this.profile = usuarioContexto.employee.profile.name;
     }
   }
 

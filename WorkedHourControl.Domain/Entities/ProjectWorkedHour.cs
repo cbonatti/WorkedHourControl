@@ -20,7 +20,14 @@ namespace WorkedHourControl.Domain.Entities
         public virtual Team Team { get; private set; }
         public long EmployeeId { get; private set; }
         public virtual Employee Employee { get; private set; }
-        public DateTime Date { get; set; }
-        public decimal TimeSpent { get; set; }
+        public DateTime Date { get; private set; }
+        public decimal TimeSpent { get; private set; }
+
+        public ProjectWorkedHour ChangeWorkedHour(decimal timeSpent, long teamId)
+        {
+            TimeSpent = timeSpent;
+            TeamId = teamId;
+            return this;
+        }
     }
 }

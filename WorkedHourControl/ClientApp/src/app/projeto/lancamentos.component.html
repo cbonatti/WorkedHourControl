@@ -1,0 +1,41 @@
+<style>
+	.btn-danger {
+		margin-left: 5px;
+	}
+</style>
+<div class="modal-header">
+	<h4 class="modal-title">Lançamento de Horas: {{name}}</h4>
+	<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<div *ngIf="!loading">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Data</th>
+					<th scope="col">Horas Trabalhadas</th>
+					<th scope="col">Equipe</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of workedHours">
+					<th scope="row">{{item.date | date: 'dd/MM/yyyy'}}</th>
+					<th scope="row">{{item.timeSpent}}</th>
+					<th scope="row">{{item.team.name}}</th>
+					<th scope="row">
+						<button type="submit" class="btn btn-warning" (click)="lancar(item)">Editar</button>
+						<button type="submit" class="btn btn-danger" (click)="excluir(item.id)">Excluir</button>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<app-loading *ngIf="loading"></app-loading>
+</div>
+<div class="modal-footer">
+	<button type="submit" class="btn btn-success" (click)="lancar()">Lançar</button>
+	<button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fechar</button>
+</div>

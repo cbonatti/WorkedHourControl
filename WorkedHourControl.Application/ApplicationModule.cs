@@ -16,6 +16,7 @@ namespace WorkedHourControl.Application
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<IWorkedHourService, WorkedHourService>();
+            services.AddScoped<IProjectTeamService, ProjectTeamService>();
             return services;
         }
     }

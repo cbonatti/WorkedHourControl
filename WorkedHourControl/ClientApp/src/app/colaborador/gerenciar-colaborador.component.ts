@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ErroHandler } from '../error-handle.service';
-import { EmployeeModel } from '../models/employee.model';
+import { CreateEmployeeModel } from '../models/create-employee.model';
 import { RestService } from '../rest.service';
 
 @Component({
@@ -51,8 +51,8 @@ export class GerenciarColaboradorComponent implements OnInit {
 			this.incluir();
 	}
 
-	criarPayload(): EmployeeModel {
-		var employee = new EmployeeModel();
+	criarPayload(): CreateEmployeeModel {
+		var employee = new CreateEmployeeModel();
 		employee.username = this.usuario;
 		employee.password = this.senha;
 		employee.name = this.nome;
@@ -63,7 +63,7 @@ export class GerenciarColaboradorComponent implements OnInit {
 	incluir() {
 		var employee = this.criarPayload();
 		this.loading = true;
-		this.restService.post<EmployeeModel[]>('user', employee).subscribe(result => {
+		this.restService.post<CreateEmployeeModel[]>('user', employee).subscribe(result => {
 			this.loading = false;
 			this.activeModal.close('entity saved')
 		}, error => {
@@ -76,7 +76,7 @@ export class GerenciarColaboradorComponent implements OnInit {
 		var employee = this.criarPayload();
 		employee.id = this.id;
 		this.loading = true;
-		this.restService.put<EmployeeModel[]>('user', employee).subscribe(result => {
+		this.restService.put<CreateEmployeeModel[]>('user', employee).subscribe(result => {
 			this.loading = false;
 			this.activeModal.close('entity saved')
 		}, error => {

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using WorkedHourControl.Application.DTOs.Requests.ProjectRequests;
 using WorkedHourControl.Application.DTOs.Responses.ProjectResponses;
 using WorkedHourControl.Application.Utils.Extensions;
-using WorkedHourControl.Domain.Entities;
 using WorkedHourControl.Domain.Repositories;
 
 namespace WorkedHourControl.Application.Services.ProjectServices
@@ -25,16 +23,13 @@ namespace WorkedHourControl.Application.Services.ProjectServices
             return workedHours.ToResponse();
         }
 
-        public async Task Add(AddWorkedHourRequest request, long emplyeeId)
+        public async Task Save(AddWorkedHourRequest request)
         {
             var project = await _projectRepository.Get(request.ProjectId);
-            project.AddWorkHour(emplyeeId, request.TeamId, request.Date, request.TimeSpent);
+            project.AddWorkHour(request.EmployeeId, request.TeamId, request.Date, request.TimeSpent);
             await _projectRepository.Save(project);
         }
 
-        public async Task Update(UpdateWorkedHourRequest request)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Delete(long id) => await _workedHourRepository.Delete(id);
     }
 }

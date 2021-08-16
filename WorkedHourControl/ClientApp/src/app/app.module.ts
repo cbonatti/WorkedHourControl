@@ -20,7 +20,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from './rest.service';
 import { GerenciarEquipeComponent } from './equipe/gerenciar-equipe.component';
 import { GerenciarProjetoComponent } from './projeto/gerenciar-projeto.component';
+import { LancamentosComponent } from './projeto/lancamentos.component';
 import { LancamentoComponent } from './projeto/lancamento.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { LancamentoComponent } from './projeto/lancamento.component';
     GerenciarColaboradorComponent,
     GerenciarEquipeComponent,
     GerenciarProjetoComponent,
+    LancamentosComponent,
     LancamentoComponent
   ],
   imports: [
@@ -51,8 +54,8 @@ import { LancamentoComponent } from './projeto/lancamento.component';
     ])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-  providers: [AuthService, AuthGuardService, AuthGuardServiceGestor, LocalStorageService, RestService],
-  entryComponents: [GerenciarColaboradorComponent, GerenciarEquipeComponent, GerenciarProjetoComponent, LancamentoComponent],
+  providers: [AuthService, AuthGuardService, AuthGuardServiceGestor, LocalStorageService, RestService, DatePipe],
+  entryComponents: [GerenciarColaboradorComponent, GerenciarEquipeComponent, GerenciarProjetoComponent, LancamentosComponent, LancamentoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

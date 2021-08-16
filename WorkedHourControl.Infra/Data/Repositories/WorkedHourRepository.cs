@@ -19,7 +19,7 @@ namespace WorkedHourControl.Infra.Data.Repositories
 
         public async Task<ProjectWorkedHour> Get(long id) => await _context.WorkedHour.SingleOrDefaultAsync(x => x.Id == id);
 
-        public async Task<IList<ProjectWorkedHour>> GetByEmployee(long id, long projectId) => await _context.WorkedHour.Where(x => x.EmployeeId == id && x.ProjectId == projectId).ToListAsync();
+        public async Task<IList<ProjectWorkedHour>> GetByEmployee(long id, long projectId) => await _context.WorkedHour.Include(x => x.Team).Where(x => x.EmployeeId == id && x.ProjectId == projectId).ToListAsync();
 
         public async Task<IList<ProjectWorkedHour>> GetByProject(long id) => await _context.WorkedHour.Where(x => x.ProjectId == id).ToListAsync();
 
@@ -39,6 +39,13 @@ namespace WorkedHourControl.Infra.Data.Repositories
                 _context.WorkedHour.Add(workedHour);
             else
                 _context.WorkedHour.Update(workedHour);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Delete(long id)
+        {
+            var workedHour = await Get(id);
+            _context.Remove(workedHour);
             await _context.SaveChangesAsync();
         }
     }

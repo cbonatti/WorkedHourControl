@@ -12,5 +12,6 @@ namespace WorkedHourControl.Domain.Repositories
         Task<IList<ProjectWorkedHour>> GetByProject(long id);
         Task<IList<ProjectWorkedHour>> GetByEmployee(long id, long projectId);
         Task<IList<ProjectWorkedHour>> Report(DateTime startDate, DateTime endDate, long projectId, long teamId, long employeeId);
+        Task Delete(long id);
     }
 }

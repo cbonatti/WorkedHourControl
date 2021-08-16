@@ -8,6 +8,7 @@ namespace WorkedHourControl.Domain.Repositories
     {
         Task Save(Project project);
         Task<Project> Get(long id);
+        Task<Project> GetWithEmployees(long id);
         Task<IList<Project>> Get();
     }
 }

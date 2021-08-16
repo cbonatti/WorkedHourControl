@@ -1,5 +1,5 @@
 <div class="modal-header">
-	<h4 class="modal-title">Projeto</h4>
+	<h4 class="modal-title">{{name}}</h4>
 	<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
 		<span aria-hidden="true">&times;</span>
 	</button>
@@ -7,27 +7,23 @@
 <div class="modal-body">
 	<div *ngIf="!loading">
 		<div class="form-group">
-			<label for="nome">Nome</label>
-			<input type="text" class="form-control" id="nome" placeholder="Nome" [(ngModel)]="projeto.name">
+			<label for="data">Data</label>
+			<input type="date" class="form-control" id="data" [ngModel]="data | date:'yyyy-MM-dd'"
+				(ngModelChange)="data = $event" [disabled]="bloquearEdicaoData">
 		</div>
-		<div class="alert alert-primary" role="alert">
-			Vincular equipes ao projeto
+		<div class="form-group">
+			<label for="tempo">Horas Trabalhadas</label>
+			<input type="number" class="form-control" id="tempo" placeholder="Horas Trabalhadas" [(ngModel)]="tempo"
+				min="0" step=".1">
 		</div>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col">Vincular</th>
-					<th scope="col">Nome</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let item of equipes">
-					<td><input type="checkbox" id="selecionado" [checked]="item.selected"
-							(change)="selecionar(item.id)"></td>
-					<th scope="row">{{item.name}}</th>
-				</tr>
-			</tbody>
-		</table>
+		<div class="form-group">
+			<label for="tempo">Horas Trabalhadas</label>
+			<select name="equipe" id="equipe" class="form-control" #t (change)="selecionarEquipe(t.value)">
+				<option *ngFor="let option of equipes" [value]="option.id"
+					[selected]="option.id == equipeSelecionada.id">
+					{{option.name}}</option>
+			</select>
+		</div>
 	</div>
 	<app-loading *ngIf="loading"></app-loading>
 </div>

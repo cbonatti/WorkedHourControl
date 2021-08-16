@@ -18,10 +18,10 @@ namespace WorkedHourControl.Application.Services.TeamServices
             _teamRepository = teamRepository;
         }
 
-        public async Task<IList<TeamResponse>> Get()
+        public async Task<IList<TeamSimpleResponse>> Get()
         {
             var teams = await _teamRepository.Get();
-            return teams.Select(x => x.ToResponse()).OrderBy(x => x.Name).ToList();
+            return teams.Select(x => x.ToSimpleResponse()).OrderBy(x => x.Name).ToList();
         }
 
         public async Task<TeamResponse> Get(long id)

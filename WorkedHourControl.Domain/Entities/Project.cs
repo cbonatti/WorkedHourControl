@@ -50,16 +50,11 @@ namespace WorkedHourControl.Domain.Entities
             if (WorkedHours == null)
                 WorkedHours = new List<ProjectWorkedHour>();
 
-            var workedHour = WorkedHours.Where(x => x.EmployeeId == employeeId && x.Date == date).FirstOrDefault();
+            var workedHour = WorkedHours.Where(x => x.EmployeeId == employeeId && x.Date.Date == date.Date).FirstOrDefault();
             if (workedHour == null)
-            {
-                workedHour = new ProjectWorkedHour(Id, employeeId, teamId, date, time);
-                WorkedHours.Add(workedHour);
-            }
+                WorkedHours.Add(new ProjectWorkedHour(Id, employeeId, teamId, date, time));
             else
-            {
-                workedHour.TimeSpent = time;
-            }
+                workedHour.ChangeWorkedHour(time, teamId);
 
             return this;
         }

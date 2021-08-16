@@ -26,6 +26,6 @@ export class AuthGuardServiceGestor implements CanActivate {
         if (!usuarioContexto)
             return false;
 
-        return usuarioContexto.profile == "Gestor";
+        return usuarioContexto.employee.profile.id == 1;
     }
 }

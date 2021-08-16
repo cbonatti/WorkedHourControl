@@ -13,7 +13,7 @@
 		<tbody>
 			<tr *ngFor="let item of employees">
 				<th scope="row">{{item.name}}</th>
-				<td>{{item.profile}}</td>
+				<td>{{item.profile.name}}</td>
 				<td><button type="submit" class="btn btn-warning" (click)="alterar(item.id)">Editar</button></td>
 			</tr>
 		</tbody>

@@ -25,8 +25,7 @@ namespace WorkedHourControl.Application.Utils
                 return null;
             return new LoginConfirmedResponse()
             {
-                Name = user.Employee.Name,
-                Profile = user.Employee.Profile.Description(),
+                Employee = user.Employee.ToResponse(),
                 Username = user.Username,
                 Token = token
             };
