@@ -14,7 +14,7 @@ namespace WorkedHourControl.Application.Utils
             {
                 Id = project.Id,
                 Name = project.Name,
-                Teams = project.Teams.Select(x => x.ToTeamResponse()).ToList()
+                Teams = project.Teams.Select(x => x.ToTeamResponse()).OrderBy(x => x.Name).ToList()
             };
         }
 

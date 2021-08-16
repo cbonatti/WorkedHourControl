@@ -26,6 +26,14 @@ namespace WorkedHourControl.Api.Controllers
             return Ok(response);
         }
 
+        [HttpGet, Route("report")]
+        [AuthorizationRoles(Profile.Manager)]
+        public async Task<IActionResult> GetForReport()
+        {
+            var response = await _projectService.GetForReport();
+            return Ok(response);
+        }
+
         [HttpGet]
         [AuthorizationRoles(Profile.Manager)]
         public async Task<IActionResult> GetById([FromQuery]long id)

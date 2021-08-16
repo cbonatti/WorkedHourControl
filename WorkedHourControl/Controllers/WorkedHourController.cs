@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using WorkedHourControl.Application.DTOs.Requests.ProjectRequests;
 using WorkedHourControl.Application.Services.ProjectServices;
@@ -30,6 +31,15 @@ namespace WorkedHourControl.Api.Controllers
                 return BadRequest("Informe todos os campos obrigatórios");
             await _workedHourService.Save(request);
             return Ok();
+        }
+
+        [HttpPost, Route("report")]
+        public async Task<IActionResult> Post(WorkedHourReportRequest request)
+        {
+            if (request == null || request.StartDate == DateTime.MinValue || request.EndDate == DateTime.MinValue || request.ProjectId == 0)
+                return BadRequest("Informe todos os campos obrigatórios");
+            var response = await _workedHourService.Report(request);
+            return Ok(response);
         }
 
         [HttpDelete, Route("{id}")]

@@ -26,6 +26,9 @@
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn && isManager">
             <a class="nav-link text-dark" [routerLink]="['/colaboradores']">Colaboradores</a>
           </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isLoggedIn && isManager">
+            <a class="nav-link text-dark" [routerLink]="['/report']">Relatório</a>
+          </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="!isLoggedIn">
             <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
           </li>

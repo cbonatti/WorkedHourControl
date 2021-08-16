@@ -1,0 +1,65 @@
+<style>
+	.btn-primary {
+		margin-top: 30px;
+	}
+</style>
+<h1>Relatório de Horas Trabalhadas</h1>
+<div class="row" *ngIf="!loadingProjetos">
+	<div class="col-2">
+		<div class="form-group">
+			<label for="dataInicio">Data Início</label>
+			<input type="date" class="form-control" id="dataInicio" [ngModel]="dataInicio | date:'yyyy-MM-dd'"
+				(ngModelChange)="dataInicio = $event">
+		</div>
+	</div>
+	<div class="col-2">
+		<div class="form-group">
+			<label for="dataFim">Data fim</label>
+			<input type="date" class="form-control" id="dataFim" [ngModel]="dataFim | date:'yyyy-MM-dd'"
+				(ngModelChange)="dataFim = $event">
+		</div>
+	</div>
+	<div class="col-3">
+		<div class="form-group">
+			<label for="projeto">Projeto</label>
+			<select name="projeto" id="projeto" class="form-control" #p (change)="selecionarProjeto(p.value)">
+				<option *ngFor="let option of projetos" [value]="option.id"
+					[selected]="option.id == projetoSelecionado.id">
+					{{option.name}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-3">
+		<div class="form-group">
+			<label for="equipe">Equipe</label>
+			<select name="equipe" id="equipe" class="form-control" #t (change)="selecionarEquipe(t.value)">
+				<option *ngFor="let option of equipes" [value]="option.id">
+					{{option.name}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-2">
+		<button type="submit" class="btn btn-primary" (click)="gerar()">Gerar</button>
+	</div>
+</div>
+<app-loading *ngIf="loadingProjetos"></app-loading>
+<div class="alert alert-primary" role="alert" *ngIf="!loading && workedHours && workedHours.length > 0">
+	Total de Horas no período: <b>{{totalHoras}}</b>
+</div>
+<table class="table table-hover" *ngIf="!loading">
+	<thead>
+		<tr>
+			<th scope="col">Data</th>
+			<th scope="col">Horas Trabalhadas</th>
+			<th scope="col">Equipe</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of workedHours">
+			<th scope="row">{{item.date | date: 'dd/MM/yyyy'}}</th>
+			<th scope="row">{{item.timeSpent}}</th>
+			<th scope="row">{{item.team.name}}</th>
+		</tr>
+	</tbody>
+</table>
+<app-loading *ngIf="loading" descricao="Gerando Relatório"></app-loading>

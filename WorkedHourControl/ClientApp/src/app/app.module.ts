@@ -23,6 +23,7 @@ import { GerenciarProjetoComponent } from './projeto/gerenciar-projeto.component
 import { LancamentosComponent } from './projeto/lancamentos.component';
 import { LancamentoComponent } from './projeto/lancamento.component';
 import { DatePipe } from '@angular/common';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DatePipe } from '@angular/common';
     GerenciarEquipeComponent,
     GerenciarProjetoComponent,
     LancamentosComponent,
-    LancamentoComponent
+    LancamentoComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,6 +53,7 @@ import { DatePipe } from '@angular/common';
       { path: 'projetos', component: ProjetoComponent, canActivate: [AuthGuardService] },
       { path: 'equipes', component: EquipeComponent, canActivate: [AuthGuardServiceGestor] },
       { path: 'colaboradores', component: ColaboradorComponent, canActivate: [AuthGuardServiceGestor] },
+      { path: 'report', component: ReportComponent, canActivate: [AuthGuardServiceGestor] },
     ])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

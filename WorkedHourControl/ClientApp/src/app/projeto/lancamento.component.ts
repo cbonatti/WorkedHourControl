@@ -24,7 +24,7 @@ export class LancamentoComponent implements OnInit {
 	@Input() data: Date;
 	@Input() tempo: number;
 
-	constructor(private restService: RestService, public activeModal: NgbActiveModal, private service: AuthService, private datepipe: DatePipe) {
+	constructor(private restService: RestService, public activeModal: NgbActiveModal, private datepipe: DatePipe) {
 	}
 
 	ngOnInit() {

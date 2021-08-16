@@ -31,5 +31,11 @@ namespace WorkedHourControl.Application.Services.ProjectServices
         }
 
         public async Task Delete(long id) => await _workedHourRepository.Delete(id);
+
+        public async Task<WorkedHourResponse> Report(WorkedHourReportRequest request)
+        {
+            var workedHours = await _workedHourRepository.Report(request.StartDate, request.EndDate, request.ProjectId, request.TeamId, request.EmployeeId);
+            return workedHours.ToResponse();
+        }
     }
 }

@@ -24,6 +24,12 @@ namespace WorkedHourControl.Application.Services.ProjectServices
             return projects.Select(x => x.ToSimpleResponse()).OrderBy(x => x.Name).ToList();
         }
 
+        public async Task<IList<ProjectResponse>> GetForReport()
+        {
+            var projects = await _projectRepository.Get();
+            return projects.Select(x => x.ToResponse()).OrderBy(x => x.Name).ToList();
+        }
+
         public async Task<ProjectResponse> Get(long id)
         {
             var project = await _projectRepository.Get(id);

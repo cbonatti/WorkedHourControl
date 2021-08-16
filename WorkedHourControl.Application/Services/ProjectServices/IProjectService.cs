@@ -8,6 +8,7 @@ namespace WorkedHourControl.Application.Services.ProjectServices
     public interface IProjectService
     {
         Task<IList<ProjectSimpleResponse>> Get();
+        Task<IList<ProjectResponse>> GetForReport();
         Task<ProjectResponse> Get(long id);
         Task<ProjectResponse> Add(AddProjectRequest request);
         Task<ProjectResponse> Update(UpdateProjectRequest request);
